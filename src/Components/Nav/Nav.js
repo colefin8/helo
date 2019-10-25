@@ -3,6 +3,10 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { updateUser, clearUser } from "../../redux/reducer";
 import axios from "axios";
+import "./Nav.css";
+import home from "./home.png";
+import logout from "./logout.png";
+import newPost from "./newPost.png";
 
 class Nav extends Component {
   componentDidMount() {
@@ -27,19 +31,31 @@ class Nav extends Component {
   render() {
     console.log(this.props);
     return (
-      <div>
-        <img alt="profile" src={this.props.profilePic} />
-        <h3>{this.props.usersname}</h3>
-        <Link to="/dashboard">
-          <button>Home</button>
-        </Link>
-        <Link to="/new">
-          <button>New Post</button>
-        </Link>
-        <Link to="/">
-          <button onClick={this.logout}>Logout</button>
-        </Link>
-      </div>
+      <nav>
+        <div className="topNav">
+          <div
+            className="profileBorder"
+            style={{ backgroundImage: `url(${this.props.profilePic})` }}
+          ></div>
+          <h3>{this.props.usersname}</h3>
+          <Link to="/dashboard">
+            <img className="navButton" alt="home" src={home} />
+          </Link>
+          <Link to="/new">
+            <img className="navButton" alt="new post" src={newPost} />
+          </Link>
+        </div>
+        <div>
+          <Link to="/">
+            <img
+              className="navButton"
+              alt="logout"
+              src={logout}
+              onClick={this.logout}
+            />
+          </Link>
+        </div>
+      </nav>
     );
   }
 }

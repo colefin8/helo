@@ -29,21 +29,6 @@ class Dashboard extends Component {
     }
   };
 
-  mapper = () => {
-    const mapped = this.state.posts.map((e, i) => {
-      return (
-        <Link to={`/post/${e.id}`}>
-          <div key={`post#:${i}`}>
-            <h2>{e.title}</h2>
-            <h3>{e.username}</h3>
-            <img alt="profile" src={e.img} />
-          </div>
-        </Link>
-      );
-    });
-    return mapped;
-  };
-
   search = () => {
     axios
       .get(
@@ -67,6 +52,17 @@ class Dashboard extends Component {
   };
 
   render() {
+    const mapped = this.state.posts.map((e, i) => {
+      return (
+        <Link to={`/post/${e.id}`}>
+          <div key={`post#:${i}`}>
+            <h2>{e.title}</h2>
+            <h3>{e.username}</h3>
+            <img alt="profile" src={e.img} />
+          </div>
+        </Link>
+      );
+    });
     return (
       <div>
         <div>
@@ -87,7 +83,7 @@ class Dashboard extends Component {
           />
           <label htmlFor="myPosts">My Posts</label>
         </div>
-        <div>{this.mapper()}</div>
+        <div>{mapped}</div>
       </div>
     );
   }

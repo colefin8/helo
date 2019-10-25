@@ -11,8 +11,8 @@ function App(props) {
   return (
     <Provider store={store}>
       <div className="App">
-        {routes}
         {props.location.pathname === "/" ? null : <Nav />}
+        {routes}
       </div>
     </Provider>
   );

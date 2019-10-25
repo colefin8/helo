@@ -1,0 +1,43 @@
+/* font-family: 'Open Sans', sans-serif; 
+#FF70A6
+#FF9770
+#FFD670
+#E9FF70
+#F2F2F2
+#403D39
+*/
+
+nav {
+  height: 100vh;
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background-image: linear-gradient(to top, #ff7abe, #ff9770);
+  padding: 20px 0;
+}
+
+.profileBorder {
+  width: 70px;
+  height: 70px;
+  background-color: #f2f2f2;
+  box-shadow: 0 0 20px #333;
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+}
+
+.topNav {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 50%;
+  width: 100%;
+}
+
+.navButton {
+  height: 40px;
+  width: 40px;
+}

@@ -49,21 +49,36 @@ class Auth extends Component {
   render() {
     // console.log(this.props);
     return (
-      <div>
-        <img src={index} />
-        <input
-          name="username"
-          value={this.state.username}
-          onChange={e => this.handleInput(e)}
-        />
-        <input
-          name="password"
-          type="password"
-          value={this.state.password}
-          onChange={e => this.handleInput(e)}
-        />
-        <button onClick={this.loginUser}>Login</button>
-        <button onClick={this.registerUser}>Register</button>
+      <div className="authBox">
+        <div className="inputBox">
+          <img src={index} />
+          <h1 id="authHeader">Helo</h1>
+          <div className="authInput">
+            <span className="authInputText">Username:</span>
+            <input
+              name="username"
+              value={this.state.username}
+              onChange={e => this.handleInput(e)}
+            />
+          </div>
+          <div className="authInput">
+            <span className="authInputText">Password:</span>
+            <input
+              name="password"
+              type="password"
+              value={this.state.password}
+              onChange={e => this.handleInput(e)}
+            />
+          </div>
+          <div className="buttonBox">
+            <button className="button" onClick={this.loginUser}>
+              Login
+            </button>
+            <button className="button" onClick={this.registerUser}>
+              Register
+            </button>
+          </div>
+        </div>
       </div>
     );
   }
