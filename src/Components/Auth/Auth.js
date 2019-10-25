@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import { updateUser } from "../../redux/reducer";
+import "./Auth.css";
+import index from "./index.png";
 
 class Auth extends Component {
   constructor() {
@@ -23,8 +25,8 @@ class Auth extends Component {
         password: this.state.password
       })
       .then(res => {
-        const { id, username, profile_pic } = res.data;
-        updateUser(id, username, profile_pic);
+        const { username, profile_pic } = res.data;
+        updateUser(username, profile_pic);
         this.props.history.push("/dashboard");
       })
       .catch(err => console.log(`front end error: ${err}`));
@@ -37,8 +39,8 @@ class Auth extends Component {
         password: this.state.password
       })
       .then(res => {
-        const { id, username, profile_pic } = res.data;
-        updateUser(id, username, profile_pic);
+        const { username, profile_pic } = res.data;
+        updateUser(username, profile_pic);
         this.props.history.push("/dashboard");
       })
       .catch(err => console.log(`front end error: ${err}`));
@@ -48,6 +50,7 @@ class Auth extends Component {
     // console.log(this.props);
     return (
       <div>
+        <img src={index} />
         <input
           name="username"
           value={this.state.username}

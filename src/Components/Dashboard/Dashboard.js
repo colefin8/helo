@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 class Dashboard extends Component {
   constructor() {
@@ -9,6 +11,10 @@ class Dashboard extends Component {
       posts: []
     };
   }
+
+  componentDidMount = () => {
+    this.search();
+  };
 
   handleInput = e => {
     console.log(e.target);
@@ -26,14 +32,38 @@ class Dashboard extends Component {
   mapper = () => {
     const mapped = this.state.posts.map((e, i) => {
       return (
-        <div>
-          <h2>{e.title}</h2>
-          <h3>{e.username}</h3>
-          <img alt="profile" src={e.img} />
-        </div>
+        <Link to={`/post/${e.id}`}>
+          <div key={`post#:${i}`}>
+            <h2>{e.title}</h2>
+            <h3>{e.username}</h3>
+            <img alt="profile" src={e.img} />
+          </div>
+        </Link>
       );
     });
     return mapped;
+  };
+
+  search = () => {
+    axios
+      .get(
+        this.state.searchInput
+          ? `/api/posts/?userposts=${this.state.myPosts}&search=${this.state.searchInput}`
+          : `/api/posts/?userposts=${this.state.myPosts}`
+      )
+      .then(res => {
+        this.setState({ posts: res.data });
+      })
+      .catch(err => console.log(err));
+  };
+
+  reset = () => {
+    axios
+      .get(`/api/posts/?userposts=${this.state.myPosts}`)
+      .then(res => {
+        this.setState({ posts: res.data, searchInput: "" });
+      })
+      .catch(err => console.log(err));
   };
 
   render() {
@@ -45,8 +75,8 @@ class Dashboard extends Component {
             value={this.state.searchInput}
             onChange={e => this.handleInput(e)}
           />
-          <button>Search</button>
-          <button>Reset</button>
+          <button onClick={this.search}>Search</button>
+          <button onClick={this.reset}>Reset</button>
           <input
             type="checkbox"
             id="myPosts"
